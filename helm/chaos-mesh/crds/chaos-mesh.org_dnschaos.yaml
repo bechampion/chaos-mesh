@@ -43,10 +43,11 @@ spec:
             properties:
               action:
                 description: 'Action defines the specific DNS chaos action. Supported
-                  action: error, random Default action: error'
+                  action: error, random , fixed Default action: error'
                 enum:
                 - error
                 - random
+                - fixed
                 type: string
               containerNames:
                 description: ContainerNames indicates list of the name of affected
@@ -66,6 +67,9 @@ spec:
                 - fixed
                 - fixed-percent
                 - random-max-percent
+                type: string
+              fixedaddress:
+                description: Fixed Address where to send the patterns
                 type: string
               patterns:
                 description: 'Choose which domain names to take effect, support the

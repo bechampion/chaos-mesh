@@ -31,6 +31,9 @@ const (
 
 	// RandomAction represents get random IP when send DNS request.
 	RandomAction DNSChaosAction = "random"
+
+	// FixedAddressAction represents get a fixed IP when send DNS request.
+	FixedAddressAction DNSChaosAction = "fixed"
 )
 
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
@@ -60,9 +63,9 @@ var _ InnerObject = (*DNSChaos)(nil)
 // DNSChaosSpec defines the desired state of DNSChaos
 type DNSChaosSpec struct {
 	// Action defines the specific DNS chaos action.
-	// Supported action: error, random
+	// Supported action: error, random, fixed
 	// Default action: error
-	// +kubebuilder:validation:Enum=error;random
+	// +kubebuilder:validation:Enum=error;random;fixed
 	Action DNSChaosAction `json:"action"`
 
 	ContainerSelector `json:",inline"`
@@ -79,6 +82,9 @@ type DNSChaosSpec struct {
 	// 		will take effect on "google.com", "github.com" and "chaos-mesh.org"
 	// +optional
 	DomainNamePatterns []string `json:"patterns,omitempty"`
+
+	// +optional
+	FixedAddress string `json:"fixedaddress,omitempty"`
 
 	// RemoteCluster represents the remote cluster where the chaos will be deployed
 	// +optional
