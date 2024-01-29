@@ -91,7 +91,7 @@ func (impl *Impl) Apply(ctx context.Context, index int, records []*v1alpha1.Reco
 	return v1alpha1.Injected, nil
 }
 
-func (impl *Impl) setDNSServerRules(dnsServerIP string, port int, name string, pod *v1.Pod, action v1alpha1.DNSChaosAction, patterns []string , fixedAddress string) error {
+func (impl *Impl) setDNSServerRules(dnsServerIP string, port int, name string, pod *v1.Pod, action v1alpha1.DNSChaosAction, patterns []string , fixedAddress []string) error {
 	impl.Log.Info("setDNSServerRules", "name", name)
 
 	pbPods := make([]*dnspb.Pod, 1)
@@ -112,7 +112,7 @@ func (impl *Impl) setDNSServerRules(dnsServerIP string, port int, name string, p
 		Action:   string(action),
 		Pods:     pbPods,
 		Patterns: patterns,
-		FixedAddress: fixedAddress,
+		Fixedaddress: fixedAddress,
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)

@@ -70,7 +70,9 @@ spec:
                 type: string
               fixedaddress:
                 description: Fixed Address where to send the patterns
-                type: string
+                items:
+                  type: string
+                type: array
               patterns:
                 description: 'Choose which domain names to take effect, support the
                   placeholder ? and wildcard *, or the Specified domain name. Note:

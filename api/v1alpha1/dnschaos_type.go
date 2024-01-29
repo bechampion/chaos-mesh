@@ -84,7 +84,7 @@ type DNSChaosSpec struct {
 	DomainNamePatterns []string `json:"patterns,omitempty"`
 
 	// +optional
-	FixedAddress string `json:"fixedaddress,omitempty"`
+	FixedAddress []string `json:"fixedaddress,omitempty"`
 
 	// RemoteCluster represents the remote cluster where the chaos will be deployed
 	// +optional
