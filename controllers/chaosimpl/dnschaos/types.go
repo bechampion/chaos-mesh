@@ -94,6 +94,10 @@ func (impl *Impl) Apply(ctx context.Context, index int, records []*v1alpha1.Reco
 func (impl *Impl) setDNSServerRules(dnsServerIP string, port int, name string, pod *v1.Pod, action v1alpha1.DNSChaosAction, patterns []string , fixedAddress []string) error {
 	impl.Log.Info("setDNSServerRules", "name", name)
 
+	if (action == "fixed" && len(fixedAddress) <= 0) {
+		impl.Log.Error(nil, "Action fixed needs a list of of addresses on attribute fixedaddress")
+		return fmt.Errorf("Action fixed needs a list of of addresses on attribute fixedaddress")
+	}
 	pbPods := make([]*dnspb.Pod, 1)
 	pbPods[0] = &dnspb.Pod{
 		Name:      pod.Name,
