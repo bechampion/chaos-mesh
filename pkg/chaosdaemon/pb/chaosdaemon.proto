@@ -157,6 +157,7 @@ message Chain {
   string destination_ports = 7;
   string tcp_flags = 8;
   string device = 9;
+  string Action = 10;
 }
 
 message TimeRequest {
